@@ -2,12 +2,15 @@ package LoginandReg;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class LoginPage {
+public class LoginPage implements ActionListener {
     JFrame f;
     Font font1,font2,font3,font4;
     JPanel p;
     ImageIcon image,icon;
+    JButton SignUp;
 
     LoginPage(){
         font1 = new Font("Cambria",Font.BOLD,50);
@@ -100,11 +103,12 @@ public class LoginPage {
         p.add(Account);
 
         //signup button
-        JButton SignUp = new JButton("Sign Up");
+        SignUp = new JButton("Sign Up");
         SignUp.setBackground(Color.cyan);
         SignUp.setForeground(Color.BLACK);
-        SignUp.setBounds(630,500,150,30);
-        SignUp.setFont(font4);
+        SignUp.setBounds(630,500,130,30);
+        SignUp.setFont(font3);
+        SignUp.addActionListener(this);
         p.add(SignUp);
 
         //background image
@@ -134,5 +138,12 @@ public class LoginPage {
 
     public static void main(String[] args) {
         new LoginPage();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==SignUp){
+            new RegistrationPage();
+        }
     }
 }
