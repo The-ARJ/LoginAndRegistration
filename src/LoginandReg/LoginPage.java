@@ -105,21 +105,23 @@ public class LoginPage {
         SignUp.setForeground(Color.BLACK);
         SignUp.setBounds(630,500,150,30);
         SignUp.setFont(font4);
-
         p.add(SignUp);
 
+        //background image
         JLabel background;
         image = new ImageIcon("resource/background.jpg");
         background = new JLabel("",image,JLabel.CENTER);
         background.setBounds(0,0,800,600);
 
 
+        //setting up JPanel
         p.setBounds(0,0,800,600);
         p.setLayout(null);
         p.setVisible(true);
         p.add(background);
         f.add(p);
 
+        //setting up JFrame
         f.setBounds(0,0,800,600);
         f.setIconImage(icon.getImage());
         f.setResizable(false);
