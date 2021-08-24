@@ -174,7 +174,7 @@ public class RegistrationPage implements ActionListener {
         p.add(background);
         f.add(p);
 
-        //setting up JFrame
+        //setting up JFramee
         f.setBounds(0,0,800,600);
         f.setIconImage(icon.getImage());
         f.setResizable(false);
