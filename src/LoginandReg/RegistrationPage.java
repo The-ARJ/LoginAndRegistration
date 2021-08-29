@@ -10,7 +10,9 @@ public class RegistrationPage implements ActionListener {
     Font font1,font2,font3,font4,font5;
     JPanel p;
     ImageIcon image,icon;
-    JButton Login;
+    JButton Btn_SignUp,Login;
+    JTextField UFName,ULName,address,emailadd;
+    JPasswordField password,Cpassword;
 
     RegistrationPage(){
         font1 = new Font("Cambria",Font.BOLD,50);
@@ -65,7 +67,7 @@ public class RegistrationPage implements ActionListener {
         p.add(Useremail);
 
         //userFirstname text field
-        JTextField UFName = new JTextField();
+        UFName = new JTextField();
         UFName.setBounds(230,150,120,30);
         UFName.setFont(font3);
         UFName.setBackground(Color.lightGray);
@@ -73,7 +75,7 @@ public class RegistrationPage implements ActionListener {
 
 
         //user last name text field
-        JTextField ULName = new JTextField();
+        ULName = new JTextField();
         ULName.setBounds(500,150,120,30);
         ULName.setFont(font3);
         ULName.setBackground(Color.lightGray);
@@ -82,14 +84,14 @@ public class RegistrationPage implements ActionListener {
 
 
         //user address text field
-        JTextField address = new JTextField();
+        address = new JTextField();
         address.setBounds(230,200,250,30);
         address.setFont(font3);
         address.setBackground(Color.lightGray);
         p.add(address);
 
         //user email address text field
-        JTextField emailadd = new JTextField();
+        emailadd = new JTextField();
         emailadd.setBounds(230,250,250,30);
         emailadd.setFont(font3);
         emailadd.setBackground(Color.lightGray);
@@ -110,30 +112,28 @@ public class RegistrationPage implements ActionListener {
         p.add(CPassword);
 
         //user password text field
-        JPasswordField password = new JPasswordField();
+        password = new JPasswordField();
         password.setBounds(230,300,250,30);
         password.setFont(font3);
         password.setBackground(Color.lightGray);
         p.add(password);
 
         //user confirm password text field
-        JPasswordField Cpassword = new JPasswordField();
+        Cpassword = new JPasswordField();
         Cpassword.setBounds(230,350,250,30);
         Cpassword.setFont(font3);
         Cpassword.setBackground(Color.lightGray);
         p.add(Cpassword);
 
 
-
-
-
         //Login button
-        JButton SignUp = new JButton("Sign Up");
-        SignUp.setBackground(Color.GREEN);
-        SignUp.setForeground(Color.BLACK);
-        SignUp.setBounds(230,400,110,40);
-        SignUp.setFont(font2);
-        p.add(SignUp);
+        Btn_SignUp = new JButton("Sign Up");
+        Btn_SignUp.setBackground(Color.GREEN);
+        Btn_SignUp.setForeground(Color.BLACK);
+        Btn_SignUp.setBounds(230,400,110,40);
+        Btn_SignUp.addActionListener(this);
+        Btn_SignUp.setFont(font2);
+        p.add(Btn_SignUp);
 
         //Reset button
         JButton Reset = new JButton("Reset");
@@ -174,7 +174,7 @@ public class RegistrationPage implements ActionListener {
         p.add(background);
         f.add(p);
 
-        //setting up JFramee
+        //setting up JFrame
         f.setBounds(0,0,800,600);
         f.setIconImage(icon.getImage());
         f.setResizable(false);
@@ -189,8 +189,25 @@ public class RegistrationPage implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String FirstName = UFName.getText();
+        String LastName = ULName.getText();
+        String Address = address.getText();
+        String email = emailadd.getText();
+
+
         if(e.getSource()==Login){
             new LoginPage();
+            f.dispose();
         }
+        if(e.getSource()==Btn_SignUp){
+            System.out.println("Button Pressed");
+            JDBC db = new JDBC();
+            String query = "insert into register(first name,last name,address,email) values('"+FirstName+"','"+LastName+"','"+Address+"','"+email+"')";
+            int ans = db.insert(query);
+            if (ans>0){
+                JOptionPane.showMessageDialog(f,"Registration Completed");
+            }
+        }
+
     }
 }

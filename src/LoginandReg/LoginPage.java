@@ -144,6 +144,7 @@ public class LoginPage implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==SignUp){
             new RegistrationPage();
+            f.dispose();
         }
     }
 }
